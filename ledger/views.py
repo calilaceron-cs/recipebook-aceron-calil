@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     ListView,
     DetailView,
@@ -14,8 +14,9 @@ class LedgerListView(ListView):
     queryset = Recipe.objects.all()
 
 
-class LedgerDetailView(DetailView):
+class LedgerDetailView(LoginRequiredMixin, DetailView):
     template_name = 'ledger/recipe_detail.html'
+    redirect_field_name = '/accounts/login'
     model = Recipe
 
     def get_object(self):
