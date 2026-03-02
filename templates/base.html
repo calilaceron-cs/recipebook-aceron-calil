@@ -12,7 +12,7 @@
     <div id="header">
         {% block header %}
             <h1>Recipe Book</h1>
-            
+
             {% if user.is_authenticated %}
                 <form action="{% url 'logout' %}" method="POST">
                     {% csrf_token %}
@@ -22,9 +22,10 @@
                 <a href="/accounts/login"><button>Login</button></a>
             {% endif %}
 
-            <h2>{% block page_header %}{% endblock %}</h2>
-
         {% endblock %}
+
+        <h2>{% block page_header %}{% endblock %}</h2>
+        
     </div>
 
     <div id="content">
