@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ object.name }}{% endblock %}
+{% block title %}{{ recipe.name }}{% endblock %}
 
 {% block content %}
-    <h2>{{ object.name }}</h2>
+    <h2>{{ recipe.name }}</h2>
     <ul>
-        {% for recipe_ingredient in object.ingredients.all %}
-            <li>{{ recipe_ingredient.ingredient.name }}: {{ recipe_ingredient.quantity }}</li>
+        {% for ingredient in recipe.ingredients.all %}
+            <li>{{ ingredient.ingredient.name }}: {{ ingredient.quantity }}</li>
         {% endfor %}
     </ul>
-    <a href="{{ object.get_absolute_url }}"><button>{{ recipe.name }}</button></a>
+    <a href="{{ recipe.get_absolute_url }}"><button>{{ recipe.name }}</button></a>
     <a href="{% url 'ledger:recipe-list' %}"><button>Go back to Recipe List</button></a>
 {% endblock %}
