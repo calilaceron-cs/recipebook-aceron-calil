@@ -9,14 +9,19 @@
 
 <body style="font-family:Helvetica">
 
-    <div id="header"><h1>Recipe Book</h1></div>
-        <a href="/accounts/login"><button>Login</button></a>
-        <div>
-            <form action="{% url 'logout' %}" method="POST">
-                {% csrf_token %}
-                <button type="submit">Logout</button>
-            </form>
-        </div>
+    <div id="header">
+        {% block header %}
+            <h1>Recipe Book</h1>
+            {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            {% elif request.resolver_match.url_name != 'login' %}
+                <a href="/accounts/login"><button>Login</button></a>
+            {% endif %}
+            {% block page_header %}{% endblock %}
+        {% endblock %}
     </div>
 
     <div id="content">
