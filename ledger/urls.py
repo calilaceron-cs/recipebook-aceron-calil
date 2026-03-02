@@ -1,10 +1,10 @@
 from django.urls import path
 
-from .views import recipe_list, recipe_detail
+from .views import LedgerListView, LedgerDetailView
 
 urlpatterns = [
-    path('recipes/list', recipe_list, name='recipe-list'),
-    path('recipes/<int:pk>', recipe_detail, name="recipe-detail"),
+    path('recipes/list', LedgerListView.as_view(), name='recipe-list'),
+    path('recipes/<int:pk>', LedgerDetailView.as_view(), name="recipe-detail"),
 ]
 
 app_name = "ledger"

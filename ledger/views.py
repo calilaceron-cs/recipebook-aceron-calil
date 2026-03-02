@@ -1,18 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+
+from django.views.generic import (
+    ListView,
+    DetailView,
+)
+
 from .models import Recipe
 
 
-def recipe_list(request):
-    recipes = Recipe.objects.all()
-    ctx = {
-        'recipes': recipes
-    }
-    return render(request, 'ledger/recipe_list.html', ctx)
+class LedgerListView(ListView):
+    template_name = 'ledger/recipe_list.html'
+    model = Recipe
+    queryset = Recipe.objects.all()
 
 
-def recipe_detail(request, pk):
-    recipe = Recipe.objects.get(pk=pk)
-    ctx = {
-        "recipe": recipe
-    }
-    return render(request, "ledger/recipe_detail.html", ctx)
+class LedgerDetailView(DetailView):
+    template_name = 'ledger/recipe_detail.html'
+    model = Recipe
+
+    def get_object(self):
+        pk_ = self.kwargs.get("pk")
+        return get_object_or_404(Recipe, pk=pk_)

@@ -2,16 +2,11 @@
 {% load static %}
 
 {% block title %}Recipe List{% endblock %}
+
 {% block content %}
     <ol>
-        {% for recipe in recipes %}
-            <li>{{ recipe.name }}</li>
-            <ul>
-                {% for recipe_ingredient in recipe.ingredients.all %}
-                    <li>{{ recipe_ingredient.ingredient.name }}: {{ recipe_ingredient.quantity }}</li>
-                {% endfor %}
-            </ul>
-            <a href="{{ recipe.get_absolute_url }}">{{ recipe.name }}</a>
+        {% for recipe in object_list %}
+            <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.name }}</a></li>
         {% endfor %}
     </ol>
 {% endblock %}
