@@ -24,8 +24,11 @@ class Recipe(models.Model):
     author = models.ForeignKey(
         Profile,
         on_delete=models.CASCADE,
-        related_name='author_'
+        related_name='recipes',
+        null=True,
     )
+    created_on = models.DateField(auto_now_add=True, null=True)
+    updated_on = models.DateField(auto_now=True, null=True)
 
     def __str__(self):
         return self.name
