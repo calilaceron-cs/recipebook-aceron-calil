@@ -11,7 +11,7 @@ class Ingredient(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("ledger:recipe-detail", args=[self.pk])
+        return reverse("ledger:ingredient-detail", args=[self.pk])
 
 
 class Recipe(models.Model):
@@ -43,3 +43,6 @@ class RecipeIngredient(models.Model):
         Recipe,
         on_delete=models.CASCADE,
         related_name='ingredients')
+
+    def __str__(self):
+        return '{}'.format(self.ingredient)

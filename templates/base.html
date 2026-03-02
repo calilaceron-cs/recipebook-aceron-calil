@@ -12,7 +12,6 @@
     <div id="header">
         {% block header %}
             <h1>Recipe Book</h1>
-            
             {% if user.is_authenticated %}
                 <p>Hello, you are logged in as {{ user.username }}</p>
                 <form action="{% url 'logout' %}" method="POST">
@@ -22,11 +21,8 @@
             {% elif request.resolver_match.url_name != 'login' %}
                 <a href="/accounts/login"><button>Login</button></a>
             {% endif %}
-
         {% endblock %}
-
         <h2>{% block page_header %}{% endblock %}</h2>
-        
     </div>
 
     <div id="content">
