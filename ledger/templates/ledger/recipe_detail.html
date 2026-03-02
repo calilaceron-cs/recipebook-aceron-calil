@@ -3,11 +3,11 @@
 
 {% block title %}{{ recipe.name }}{% endblock %}
 
-{% block header %}
+
 {% block page_header %}
-{{ recipe.name }}
+<h2>{{ recipe.name }}</h2>
 {% endblock %}
-{% endblock %}
+
 {% block content %}
     <h4>Made by: {{ recipe.author.name }}</h4>
     <ul>
@@ -15,6 +15,5 @@
             <li>{{ ingredient.ingredient.name }}: {{ ingredient.quantity }}</li>
         {% endfor %}
     </ul>
-    <a href="{{ recipe.get_absolute_url }}"><button>{{ recipe.name }}</button></a>
     <a href="{% url 'ledger:recipe-list' %}"><button>Go back to Recipe List</button></a>
 {% endblock %}
