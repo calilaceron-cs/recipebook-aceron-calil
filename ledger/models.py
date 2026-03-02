@@ -20,10 +20,9 @@ class Recipe(models.Model):
         Profile,
         on_delete=models.CASCADE,
         related_name='recipes',
-        null=True,
     )
-    created_on = models.DateField(auto_now_add=True, null=True)
-    updated_on = models.DateField(auto_now=True, null=True)
+    created_on = models.DateField(auto_now_add=True,)
+    updated_on = models.DateField(auto_now=True,)
 
     def __str__(self):
         return self.name

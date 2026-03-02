@@ -12,8 +12,9 @@
     <div id="header">
         {% block header %}
             <h1>Recipe Book</h1>
-
+            
             {% if user.is_authenticated %}
+                <p>Hello, you are logged in as {{ user.username }}</p>
                 <form action="{% url 'logout' %}" method="POST">
                     {% csrf_token %}
                     <button type="submit">Logout</button>
