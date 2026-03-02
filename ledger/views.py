@@ -16,7 +16,8 @@ class LedgerListView(ListView):
 
 class LedgerDetailView(LoginRequiredMixin, DetailView):
     template_name = 'ledger/recipe_detail.html'
-    redirect_field_name = '/accounts/login'
+    login_url = '/accounts/login'
+    redirect_field_name = 'next'
     model = Recipe
 
     def get_object(self):
