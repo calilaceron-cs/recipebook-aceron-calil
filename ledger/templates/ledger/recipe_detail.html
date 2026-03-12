@@ -10,10 +10,14 @@
 
 {% block content %}
     <h4>Made by: {{ recipe.author.name }}</h4>
+    {% for img in recipe.images.all %}
+        <img src = "{{ img.image.url }}" alt="{{ img.description }}">
+    {% endfor %}
     <ul>
         {% for ingredient in recipe.ingredients.all %}
             <li>{{ ingredient.ingredient.name }}: {{ ingredient.quantity }}</li>
         {% endfor %}
     </ul>
+    <a href="{% url 'ledger:image-add' pk=recipe.pk %}"><button>Add recipe image</button></a>
     <a href="{% url 'ledger:recipe-list' %}"><button>Go back to Recipe List</button></a>
 {% endblock %}
