@@ -20,9 +20,10 @@ class Recipe(models.Model):
         Profile,
         on_delete=models.CASCADE,
         related_name='recipes',
+        null=True
     )
-    created_on = models.DateField(auto_now_add=True,)
-    updated_on = models.DateField(auto_now=True,)
+    created_on = models.DateField(auto_now_add=True, null=True)
+    updated_on = models.DateField(auto_now=True, null=True)
 
     def __str__(self):
         return self.name
@@ -37,12 +38,32 @@ class RecipeIngredient(models.Model):
     ingredient = models.ForeignKey(
         Ingredient,
         on_delete=models.CASCADE,
-        related_name='recipe')
+        related_name='recipe',
+    )
 
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
-        related_name='ingredients')
+        related_name='ingredients',
+    )
 
     def __str__(self):
-        return '{}'.format(self.ingredient)
+        return f"{self.ingredient}"
+
+
+class RecipeImage(models.Model):
+    image = models.ImageField(
+        upload_to="images/",
+        null=True
+    )
+    description = models.CharField(
+        max_length=255
+    )
+    recipe = models.ForeignKey(
+        Recipe,
+        on_delete=models.CASCADE,
+        related_name='images'
+    )
+
+    def get_absolute_url(self):
+        return reverse("ledger:recipe-detail", args=[self.recipe.pk])
